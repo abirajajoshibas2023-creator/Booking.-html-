@@ -1,14 +1,5 @@
 # Booking.-html-
 Flights booking 
- function bookFlight(airline, time, price) {
- window.location.href = 
-`booking.html?from=${params.from}&to=${params.to}&date=${params.dat
-e}&class=${params.class}&passengers=${params.passengers}&airline=${ai
-rline}&time=${time}&price=${price}`;
- }
- </script>
-</body>
-</html>
 Booking.html
 <!DOCTYPE html>
 <html lang="en">
