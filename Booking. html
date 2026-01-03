@@ -1,0 +1,93 @@
+# Booking.-html-
+Flights booking 
+ function bookFlight(airline, time, price) {
+ window.location.href = 
+`booking.html?from=${params.from}&to=${params.to}&date=${params.dat
+e}&class=${params.class}&passengers=${params.passengers}&airline=${ai
+rline}&time=${time}&price=${price}`;
+ }
+ </script>
+</body>
+</html>
+Booking.html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>Booking Form</title>
+ <style>
+ body { font-family: Arial; background: #f0f6fc; }
+ header { background: #003366; color: white; text-align: center; padding: 
+15px; }
+ form, .confirmation {
+ background: white; max-width: 500px; margin: 30px auto; padding: 20px;
+ border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+ }
+ label { display: block; margin-top: 12px; font-weight: bold; }
+ input, button {
+ width: 100%; padding: 10px; margin-top: 6px; border: 1px solid #ccc; 
+border-radius: 6px;
+ }
+ button { background: #003366; color: white; font-size: 16px; cursor: 
+pointer; }
+ button:hover { background: #00509e; }
+ .confirmation { background: #d4edda; color: #155724; border: 1px solid 
+#c3e6cb; 
+</style>
+</head>
+<body>
+ <header>
+ <h1>Booking Form</h1>
+ </header>
+ <div id="bookingSection"></div>
+ <script>
+ function getParams() {
+ const params = {};
+ new URLSearchParams(window.location.search).forEach((val, key) => { 
+params[key] = val; });
+ return params;
+ }
+ const params = getParams();
+ let bookingDiv = document.getElementById("bookingSection");
+ bookingDiv.innerHTML = `
+ <form id="bookingForm">
+ <h3>Booking for ${params.airline} (${params.time})</h3>
+ <p><strong>From:</strong> ${params.from} → <strong>To:</strong> 
+${params.to}</p>
+ <p><strong>Date:</strong> ${params.date}</p>
+ <p><strong>Class:</strong> ${params.class}</p>
+ <p><strong>Price:</strong> ${params.price}</p>
+ <label>Passenger Name:</label>
+ <input type="text" id="name" required>
+ <label>Age:</label>
+ <input type="number" id="age" min="1" required>
+ <label>Email:</label>
+ <input type="email" id="email" required>
+ <button type="submit">Confirm Booking</button>
+ </form>
+ `;
+ document.getElementById("bookingForm").addEventListener("submit", 
+function(e) {
+ e.preventDefault();
+ const name = document.getElementById("name").value;
+ const age = document.getElementById("age").value;
+ const email = document.getElementById("email").value;
+ bookingDiv.innerHTML = `
+ <div class="confirmation">
+ <h3> Booking Confirmed!</h3>
+ <p><strong>Name:</strong> ${name} (${age} years)</p>
+ <p><strong>Email:</strong> ${email}</p>
+ <p><strong>Airline:</strong> ${params.airline}</p>
+ <p><strong>Time:</strong> ${params.time}</p>
+ <p><strong>From:</strong> ${params.from} → ${params.to}</p>
+ <p><strong>Date:</strong> ${params.date}</p>
+ <p><strong>Class:</strong> ${params.class}</p>
+ <p><strong>Passengers:</strong> ${params.passengers}</p>
+ <p><strong>Price:</strong> ${params.price}</p>
+ </div>
+ `;
+ });
+ </script>
+ </body>
+</html>
